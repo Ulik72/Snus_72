@@ -1,7 +1,7 @@
 from aiogram import Bot, Dispatcher, executor, types
 
-# Тут скорее всего не все используется))
-from emoji import emojize #Библиотека с норм названиями смайликов
+
+from emoji import emojize 
 import aiogram.utils.markdown as md
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
@@ -12,13 +12,13 @@ from aiogram.utils import executor
 from aiogram.dispatcher import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 
-import config #Вынес ТОКЕН в отдельный файл. Так надо))
+import config
 from product import PRODUCT_DICT #Список продуктов вынесен в отдельный файл со словарем
 import keyboards # Импортируем кнопки
 
 storage = MemoryStorage() #Добавил хранилище, чтоб без ошибок отрабатывала машина состояний
 
-#bot = Bot(token="1285883427:AAHJdyRqv7fOQW3vH4437gwJumtErmFFj6M") # Токен бота
+# Токен бота
 bot = Bot(token=config.API_TOKEN)
 dp = Dispatcher(bot, storage=storage)
 
@@ -40,7 +40,7 @@ products = ''
 for brand, items in PRODUCT_DICT['product'].items():
     #text = text + "<pre>{:_^{max_len}}</pre>".format(brand,max_len=max_len) + '\n' ## Здесь были заголовки с наименованием бренда
     for name, price in items.items():
-        products = products + "<pre>{:<{max_len1}} - {} руб. </pre>".format(name, price, max_len1=max_len_1) + '\n' #чтоб понять гугли метод format
+        products = products + "<pre>{:<{max_len1}} - {} руб. </pre>".format(name, price, max_len1=max_len_1) + '\n' 
     products = products + "<pre>{:-^{max_len}}</pre>".format('',max_len=max_len) + '\n' #это пунктирная черта под каждым блоком (брендом)
 products = products + "<pre>{:<{max_len1}} - {} руб. </pre>".format(list(PRODUCT_DICT['delivery'].items())[0][0],
                                                                     list(PRODUCT_DICT['delivery'].items())[0][1],
